@@ -1,57 +1,34 @@
 branches:
   only: 
-    - master
+    - next
 matrix:
   include:
-    - stage: "Lint"
-      language: node_js
+    - stage: "Build next"
       os: linux
-      node_js: "6"
-      script: cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint
-    - stage: "Build and Test"
-      env: 
-        - BuildAndroid="25"
-      language: android
-      os: linux
-      jdk: oraclejdk8
-      before_install: nvm install stable
-      script:
-        - cd src && npm i && npm run tsc && cd ../demo
-        - travis_wait travis_retry tns build android
-    - os: osx
-      env: 
-        - BuildiOS="10.3"
-        - Xcode="8.3"
-      osx_image: xcode8.3
-      language: node_js 
-      node_js: "6"
-      jdk: oraclejdk8
-      script: 
-        - cd src && npm i && npm run tsc && cd ../demo
-        - travis_wait travis_retry tns build ios
-    - os: linux
       language: android
       env:
-        - TestVersion="latest"
+        - TestVersion="next"
       jdk: oraclejdk8
       before_install:
-        - nvm install stable
+        - nvm install 6.10.3
       before_script:
-        - cd seed-tests && npm i
         - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
         - android-wait-for-emulator
+        - tns platform add android@next
+        - cd ../seed-tests && npm i
       script: travis_wait travis_retry npm run test.android
       dist: precise
     - os: osx
       env:
-        - TestVersion="latest"
+        - TestVersion="next"
       language: node_js
       node_js: "6"
       jdk: oraclejdk8
       osx_image: xcode8.3
       before_script:
-        - cd seed-tests && npm i
+        - tns platform add ios@next
+        - cd ../seed-tests && npm i
       script: travis_wait travis_retry npm run test.ios
 
 android:
@@ -64,7 +41,12 @@ android:
     - sys-img-armeabi-v7a-android-21
 
 install:
-    - echo no | npm install -g nativescript
+    - echo no | npm install -g nativescript@next
     - tns usage-reporting disable
     - tns error-reporting disable
+    - cd src
+    - npm uninstall tns-core-modules -D && npm install tns-core-modules@next -D
+    - cd ../demo
+    - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
+    - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D
     
