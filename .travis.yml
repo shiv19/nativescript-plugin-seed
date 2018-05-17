@@ -10,7 +10,7 @@ matrix:
         - TestVersion="next"
       jdk: oraclejdk8
       before_install:
-        - nvm install 6.10.3
+        - nvm install 8.9.4
       before_script:
         - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
@@ -23,7 +23,7 @@ matrix:
       env:
         - TestVersion="next"
       language: node_js
-      node_js: "6"
+      node_js: "8"
       jdk: oraclejdk8
       osx_image: xcode8.3
       before_script:
@@ -35,7 +35,7 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-26.0.2
+    - build-tools-27.0.3
     - android-23
     - android-26
     - extra-android-m2repository
