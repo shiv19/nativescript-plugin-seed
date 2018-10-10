@@ -50,4 +50,5 @@ install:
     - cd ../demo
     - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
     - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D
+    - tns doctor
     
