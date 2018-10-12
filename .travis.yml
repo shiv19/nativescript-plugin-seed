@@ -25,7 +25,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
-      osx_image: xcode9.2
+      osx_image: xcode10.0
       before_script:
         - tns platform add ios@next
         - cd ../seed-tests && npm i
@@ -39,6 +39,10 @@ android:
     - android-28
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
+
+before_install:
+    - sudo pip install --upgrade pip
+    - sudo pip install six
 
 install:
     - echo no | npm install -g nativescript@next
