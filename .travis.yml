@@ -18,7 +18,6 @@ matrix:
         - tns platform add android@next
         - cd ../seed-tests && npm i
       script: travis_wait travis_retry npm run test.android
-      dist: precise
     - os: osx
       env:
         - TestVersion="next"
@@ -36,6 +35,7 @@ android:
     - tools
     - platform-tools
     - build-tools-28.0.3
+    - android-21
     - android-28
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
