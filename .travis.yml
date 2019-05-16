@@ -14,7 +14,7 @@ matrix:
         - npm run postclone gitHubUsername=TheGitHubUser pluginName=ThePlugin initGit=y includeTypescriptDemo=y includeAngularDemo=n && npm run tsc && cd ../demo
         - tns platform add android@next
         - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
-        - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D 
+        - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D && ./node_modules/.bin/update-ns-webpack --deps --configs
         - travis_wait travis_retry tns build android
     - os: osx
       env: 
@@ -28,7 +28,7 @@ matrix:
         - npm run postclone gitHubUsername=TheGitHubUser pluginName=ThePlugin initGit=y includeTypescriptDemo=y includeAngularDemo=n && npm run tsc && cd ../demo
         - tns platform add ios@next
         - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
-        - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D 
+        - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D && ./node_modules/.bin/update-ns-webpack --deps --configs
         - travis_wait travis_retry tns build ios
     - os: linux
       language: android
