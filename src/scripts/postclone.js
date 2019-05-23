@@ -58,12 +58,6 @@ var class_name,
             value: [
                 "./node_modules/*"
             ]
-        },
-        {
-            key: "~/*",
-            value: [
-                "app/*"
-            ]
         }
     ],
     appNamePlaceholderStr = "appNamePlaceholder",
@@ -75,11 +69,11 @@ var class_name,
     preDefinedAppScripts = [
         {
             key: "appNamePlaceholder.ios",
-            value: "npm run tsc && cd appPathPlaceholder && tns run ios --syncAllFiles --emulator"
+            value: "npm run tsc && cd appPathPlaceholder && tns run ios --emulator"
         },
         {
             key: "appNamePlaceholder.android",
-            value: "npm run tsc && cd appPathPlaceholder && tns run android --syncAllFiles --emulator"
+            value: "npm run tsc && cd appPathPlaceholder && tns run android --emulator"
         }],
     preDefinedPrepareScript =
     {
