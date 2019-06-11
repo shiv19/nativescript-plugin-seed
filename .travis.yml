@@ -49,7 +49,7 @@ matrix:
         - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
         - android-wait-for-emulator
-        - cd ../seed-tests && npm i
+        - cd seed-tests && npm i
       script: travis_wait travis_retry npm run test.android
     - os: osx
       env:
@@ -59,7 +59,7 @@ matrix:
       jdk: oraclejdk8
       osx_image: xcode10.0
       before_script:
-        - cd ../seed-tests && npm i
+        - cd seed-tests && npm i
       script: travis_wait travis_retry npm run test.ios
 
 android:
